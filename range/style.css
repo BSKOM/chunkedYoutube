@@ -1,0 +1,48 @@
+:root {
+  --bg-dark: #151719;
+  --dark-red: #710707;
+  --gray: #c4c4c4;
+  --gold: #9d8665;
+  --from: 33%;
+  --to: 70%;
+  --width: 200;
+}
+
+.details {
+  position: relative;
+  margin: 50px auto;
+  width: 450px;
+}
+
+/* .progress {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(to right,
+      var(--gray) 0%,
+      var(--gray) calc(var(--from)*0.9),
+      var(--dark-red) calc(var(--from)*0.9),
+      var(--dark-red) var(--to),
+      var(--gray) var(--to),
+      var(--gray) 100%);
+  border-radius: 8px;
+  height: 7px;
+  width: calc(var(--width)*1px);
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+
+.progress::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  pointer-events: auto;
+  background: var(--dark-red);
+} */
+
+/* .label {
+  width: calc(var(--width)*1px);
+} */

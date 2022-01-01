@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Range</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class='body'>
+  <div class="container">
+    <div id="placeFrame"></div>
+    <div class="details">
+      <p>
+        1)Created <strong>Percentage</strong> input type range<br>  
+        2)Add attribute <strong>"duration"</strong> - can be avalaible and setting<br> after start video! Duration using for display time (hh/mm/ss).
+      </p>
+      <input class="progress range" type="range" value="0" min="0" max="100" step="1" 
+        duration= "0" id="myRng" >
+      <div class="nav">
+        <label class="label" for="myRng" title="first" value="20" from="0" to="10"
+          onclick="myRng.value = 0">About</label>
+        <label class="label" onclick="(() => myRng.value = this.getAttribute('value'))()" for="myRng" title="two"
+          value="30" from="10" to="30">Part
+          two</label>
+        <label class="label" onclick="(() => myRng.value = lbl.getAttribute('value'))()" for="myRng" title="three"
+          value="70" from="30" to="70" id="lbl">Part
+          three</label>
+        <label class="label" for="myRng" title="four" value="90" from="0" to="10"
+          onclick="myRng.value = 90">About</label>
+      </div>
+    </div>
+  </div>
+
+  <template id="iFrameTemp">
+    <iframe width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"
+      frameborder="0" enablejsapi="1" id="frameTag">
+    </iframe>
+    <iframe width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </template>
+  <script src="./index.js"></script>
+</body>
+
+
+</html>
