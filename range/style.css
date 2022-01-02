@@ -108,7 +108,7 @@
 
 } */
 
-#placeFrame {
+#player {
   height: 550px;
   width: calc(var(--width-ch)*1%);
   background-color: var(--gray);
