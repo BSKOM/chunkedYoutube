@@ -5,34 +5,64 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Range</title>
+  <title>Chunked Yuotube</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class='body'>
-  <div class="container">
-    <div id="placeFrame"></div>
-    <div class="details">
-      <p>
-        1)Created <strong>Percentage</strong> input type range<br>  
-        2)Add attribute <strong>"duration"</strong> - can be avalaible and setting<br> after start video! Duration using for display time (hh/mm/ss).
-      </p>
-      <input class="progress range" type="range" value="0" min="0" max="100" step="1" 
-        duration= "0" id="myRng" >
-      <div class="nav">
-        <label class="label" for="myRng" title="first" value="20" from="0" to="10"
-          onclick="myRng.value = 0">About</label>
-        <label class="label" onclick="(() => myRng.value = this.getAttribute('value'))()" for="myRng" title="two"
-          value="30" from="10" to="30">Part
-          two</label>
-        <label class="label" onclick="(() => myRng.value = lbl.getAttribute('value'))()" for="myRng" title="three"
-          value="70" from="30" to="70" id="lbl">Part
-          three</label>
-        <label class="label" for="myRng" title="four" value="90" from="0" to="10"
-          onclick="myRng.value = 90">About</label>
+  <header class="header">
+    <div class="container">
+      <h1>YouTube wrapper</h1>
+      <h3>This can be setted!</h3>
+      <p>List setting includes options visible after checked:</p>
+      <p>1)Page name.note:if name has previous value all data can be edited</p>
+      <p>2)Input type textarea (for paste clipboard data about chunks)</p>
+      <p>3)Input type textarea (link of YouTube content)</p>
+    </div>
+  </header>
+  <main class="main">
+    <div class="container">
+      <div id="placeFrame"></div>
+      <div class="controls">
+        <input class="progress range" type="range" value="0" min="0" max="100" step="1" duration="0" id="myRng">
+        <div class="nav-frame">
+          <label class="label" for="myRng" title="first" value="0" style="--width-ch: 30; --color-ch: var(--gold);"
+            onclick="myRng.value = 0">
+            <span class="tooltiptext" style="--m-left: 0px;">
+              0:00 > This part about theme of video material < 5:33 
+            </span>
+          </label>
+          <label class="label" onclick="(() => myRng.value = this.getAttribute('value'))()" for="myRng" title="two"
+            value="30" style="--width-ch: 40;  --color-ch: green;">
+            <span class="tooltiptext" style="--m-left: -240px;">
+              5:33 > This is detail number one theme of video material < 10:55
+            </span>
+          </label>
+          <label class="label" onclick="(() => myRng.value = lbl.getAttribute('value'))()" for="myRng" title="three"
+            value="70" style="--width-ch: 20;  --color-ch: blue;" id="lbl"><span class="tooltiptext"
+              style="--m-left: -560px;">
+            10:55 > This is detail number two theme of video material < 12:30
+            </span>
+          </label>
+          <label class="label" for="myRng" title="four" value="90" style="--width-ch: 10;--color-ch: var(--dark-red);"
+            onclick="myRng.value = 90">
+            <span class="tooltiptext" style="--m-left: -720px;">
+            12:30 > This is resume about theme of video material < 14:30
+            </span>
+          </label>
+          <div class="hovered-info"></div>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>1)Created <strong>Percentage</strong> input type range</p>
+      <p>2)Add attribute <strong>"duration"</strong> - can be avalaible and setting after start video! </p>
+      <p>3)Duration using for display time: hh/mm/ss.</p>
+    </div>
+  </footer>
+
 
   <template id="iFrameTemp">
     <iframe width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player"

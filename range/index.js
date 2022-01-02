@@ -1,4 +1,8 @@
 console.log('Hello world!');
+const labels = document.querySelectorAll('label');
+// const drawLabel = ()=>{
+//   [...labels].reverse.map((el)=> el.style = ``)
+// }
 const drawFrame = () => {
   const fragment = document.createDocumentFragment();
   const frameItemTemp = document.querySelector('#iFrameTemp');

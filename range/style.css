@@ -1,17 +1,126 @@
 :root {
   --bg-dark: #151719;
-  --dark-red: #710707;
+  --dark-red: #8b0909;
   --gray: #c4c4c4;
   --gold: #9d8665;
   --from: 33%;
   --to: 70%;
-  --width: 200;
+  --width: 800;
+  --width-ch: 100;
+  --m-left: 0px;
 }
 
-.details {
+.container {
+  margin: 10px auto;
+  width: calc(var(--width)*1px);
+  background-color: var(--gray);
+}
+
+.header h1 {
+  margin-block-start: auto;
+  margin-block-end: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  text-align: center;
+}
+
+.header p {
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 0.7rem;
+}
+
+.controls {
   position: relative;
-  margin: 50px auto;
-  width: 450px;
+  width: calc(var(--width-ch)*1%);
+  color: white;
+  background-color: black;
+}
+
+.controls p {
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.range {
+  width: 100%;
+}
+
+.nav-frame {
+  display: flex;
+  position: relative;
+}
+
+.label {
+  box-sizing: border-box;
+  display: block;
+  width: calc(var(--width-ch)*1%);
+  background-color: var(--color-ch);
+  border: 2px solid black;
+  text-align: center;
+  height: 20px;
+  margin-bottom: 20px;
+}
+
+.label:hover {
+  transform: scaleY(1.2);
+}
+
+.label:hover .tooltiptext {
+  display: block;
+  width:800px;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  margin-bottom: -20px;
+  margin-left: var(--m-left);
+}
+
+.tooltiptext {
+
+
+  left: 0;
+  z-index: 1;
+  display: none;
+}
+
+/* 
+.label::after {
+  content: attr(style);
+  position: absolute;
+  color: yellowgreen;
+
+  display: block;
+  bottom: 0;
+  left: 0;
+
+} */
+
+/* .label:hover::after {
+
+} */
+
+#placeFrame {
+  height: 550px;
+  width: calc(var(--width-ch)*1%);
+  background-color: var(--gray);
+}
+
+.footer p {
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 0.6rem;
 }
 
 /* .progress {
