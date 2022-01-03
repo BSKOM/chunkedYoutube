@@ -102,10 +102,6 @@
 
 } */
 
-/* .label:hover::after {
-
-} */
-
 #player {
   height: 550px;
   width: calc(var(--width-ch)*1%);
