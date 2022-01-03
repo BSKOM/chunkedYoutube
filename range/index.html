@@ -18,7 +18,7 @@
       <p>1)Page name.note:if name has previous value all data can be edited</p>
       <p>2)Input type textarea (for paste clipboard data about chunks)</p>
       <p>3)Input type textarea (link of YouTube content)</p>
-      <p>4)Based on <a href="https://developers.google.com/youtube/iframe_api_reference ">iframe_api_reference</a></p>
+      <!-- <p>4)Based on <a href="https://developers.google.com/youtube/iframe_api_reference ">iframe_api_reference</a></p> -->
     </div>
   </header>
   <main class="main">
@@ -44,6 +44,10 @@
 
 
   <template id="iFrameTemp">
+    <iframe class="iframe" width="800" height="550" src="https://www.youtube.com/embed/Xa0Q0J5tOP0" title="YouTube video player"
+      frameborder="0" allow="accelerometer; autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </template>
   <template id="labelTemp">
     <label class="label" for="myRng" value="0" style="--width-ch: 30; --color-ch: var(--gold);"

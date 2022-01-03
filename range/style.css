@@ -74,7 +74,7 @@
 
 .label:hover .tooltiptext {
   display: block;
-  width:800px;
+  width: calc(var(--width)*1px);  
   position: absolute;
   top: auto;
   bottom: 0;
@@ -85,8 +85,6 @@
 }
 
 .tooltiptext {
-
-
   left: 0;
   z-index: 1;
   display: none;

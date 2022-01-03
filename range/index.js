@@ -5,9 +5,11 @@ const myRng = document.querySelector('#myRng');
 //this parameter can be setted from setting!
 //after first setting must be saved on base
 let duration = '290'; // in sec
+
 if(myRng.getAttribute('duration') !== duration){
   console.log('Error:duration non setted!', myRng, duration )
 }
+
 let YouTubeId = 'Xa0Q0J5tOP0' //id from yt link
 let playList = [
   {
@@ -35,25 +37,42 @@ let playList = [
     color: 'var(--dark-red)'
   },
 ]; // 
-const drawLabel = ({ start=[], name, end=[], color}, d) => {
+let START_TIME = '0:00';
+let END_TIME = '4:50';
+// let curTimeout = '290000'
+const toSeconds = (hms) => {
+  const a = hms.split(':');
+  const seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+  return String(seconds)
+}
+const drawFrame = (startTime, endTime , idTube) => {
+  console.log('drawFrame', startTime, endTime, idTube);
+  const fragment = document.createDocumentFragment();
+  const iFrameTemp = document.querySelector('#iFrameTemp');
+  const frameClone = iFrameTemp.content.cloneNode(true);
+  const frameCloneFrame = frameClone.querySelector('.iframe');
+  let srcYT = `https://www.youtube.com/embed/${idTube}?start=${startTime}&end=${endTime}&autoplay=1&mute=1`;
+  console.log('drawFrame src:', srcYT);
+  frameCloneFrame.setAttribute('src', srcYT);
+  fragment.append(frameClone);
+  const player = document.querySelector('#player');
+  player.innerHTML = '';
+  player.appendChild(fragment);
+  // const labelOnClick = `myRng.value = ${startPercent}`;
+};
+const drawLabel = ({ start, name, end, color}, d) => {
+  console.log('drawLabel', start, end, color, d, YouTubeId);
   const fragment = document.createDocumentFragment();
   const labelTemp = document.querySelector('#labelTemp');
   const labelClone = labelTemp.content.cloneNode(true);
-  const labelCloneLabel = labelClone.querySelector('.label')
-  const labelCloneSpan = labelClone.querySelector('.tooltiptext')
-  const toSeconds =  (hms)=>{
-    const a = hms.split(':'); 
-    const seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-    return String(seconds)
-  }
+  const labelCloneLabel = labelClone.querySelector('.label');
+  const labelCloneSpan = labelClone.querySelector('.tooltiptext');
   const startSec = toSeconds(start);
   const startPercent = ((+startSec * 100) / +d).toFixed(2);
   const endSec = toSeconds(end);
-  const endPercent = ((+endSec * 100) / +d).toFixed(2); 
- 
-
+  const endPercent = ((+endSec * 100) / +d).toFixed(2);
   const labelStyleInline = `--width-ch: ${endPercent - startPercent}; --color-ch: ${color};`;
-  const labelOnClick = `myRng.value = ${startPercent}`;
+  const labelOnClick = `myRng.value = ${startPercent}; drawFrame(${startSec}, ${endSec}, "${YouTubeId}");`;
   const spanStyleInline = `--m-left: -${Math.floor((800 * +startPercent)/100)}px;`; 
   const spanToolipText = `${start} ${name} ${end}`
   labelCloneLabel.setAttribute('value',startSec);
@@ -65,52 +84,68 @@ const drawLabel = ({ start=[], name, end=[], color}, d) => {
   document.querySelector('#navFrame').appendChild(fragment);
 }
 const drawLabels = (pl=[], dur)=>{
+  console.log('drawLabels', pl, dur);
   const navFrame = document.querySelector('#navFrame');
   navFrame.innerHTML = '';
   [...pl].map((el) => { drawLabel(el, dur)} )
 }
-drawLabels(playList, duration)
+
+drawLabels(playList, duration);
+drawFrame(0, 290, 'Xa0Q0J5tOP0');
+
+
+
+
 /* player */
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
+// const tag = document.createElement('script');
+// tag.src = "https://www.youtube.com/iframe_api";
 
-const firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+// const firstScriptTag = document.getElementsByTagName('script')[0];
+// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-let player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '360',
-    width: '640',
-    // videoId: 'M7lc1UVf-VE',
-    videoId: YouTubeId,
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
+// let player;
+// function onYouTubeIframeAPIReady() {
 
-function onPlayerReady(event) {
-  console.log('Player is ready!')
-  event.target.playVideo();
-}
+//   player = new YT.Player('player', {
+//     height: '360',
+//     width: '640',
+//     // videoId: 'M7lc1UVf-VE',
+//     videoId: YouTubeId,
+//     playerVars: {
+//       // Supported player params can be found at https://developers.google.com/youtube/player_parameters#Parameters
+//       controls: 1, // disable video controls on mouse over
+//       disablekb: 1, // disable keyboard controls
+//       start: toSeconds(START_TIME),
+//       end: toSeconds(END_TIME),
+//     },
+//     events: {
+//       'onReady': onPlayerReady,
+//       'onStateChange': onPlayerStateChange
+//     }
+//   });
+// }
 
-let done = false;
-function onPlayerStateChange(event) {
-  console.log('Changes state!', event);
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    console.log('State is playing - set done and verifing !', event);
-    console.log('Duration:', player.getDuration());
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
-}
-function stopVideo() {
-  player.stopVideo();
-}
+// function onPlayerReady(event) {
+//   console.log('Player is ready! Please select chunk!')
+//   event.target.playVideo();
+// }
 
+// let done = false;
+// function onPlayerStateChange(event) {
+//   console.log('Changes state!', event);
+//   if (event.data == YT.PlayerState.PLAYING && !done) {
+//     console.log('State is playing - set done and verifing !', event);
+//     console.log('Duration:', player.getDuration());
+//     setTimeout(stopVideo, curTimeout);
+//     done = true;
+//   }
+// }
+// function stopVideo() {
+//   player.stopVideo();
+// }
 
+// ?t = 00m00s
+// https://www.youtube.com/embed/BspouwCTXRo?start=76&end=120 
 
 // const drawLabel = ()=>{
 //   [...labels].reverse.map((el)=> el.style = ``)
