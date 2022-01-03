@@ -66,6 +66,7 @@
   text-align: center;
   height: 20px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .label:hover {
@@ -74,7 +75,7 @@
 
 .label:hover .tooltiptext {
   display: block;
-  width: calc(var(--width)*1px);  
+  width: calc(var(--width)*1px);
   position: absolute;
   top: auto;
   bottom: 0;
